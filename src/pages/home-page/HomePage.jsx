@@ -1,73 +1,117 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { LanguagesContext } from '../../context/languageContext'
 import FeaturedSlider from './components/FeaturedSlider'
 import CategoryCards from './components/CategoryCards'
 
+const heroSlides = [
+  {
+    id: 1,
+    image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1800&q=80",
+    title: {
+      en: "Elevate Your Style With Premium Collections",
+      ar: "ارتق بذوقك مع مجموعات فاخرة",
+    },
+    subtitle: {
+      en: "Curated fashion and tech picks designed for a modern lifestyle.",
+      ar: "مختارات أزياء وتقنية مصممة لأسلوب حياة عصري.",
+    },
+  },
+  {
+    id: 2,
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1800&q=80",
+    title: {
+      en: "Luxury Tech Essentials That Perform Beautifully",
+      ar: "أساسيات تقنية فاخرة بأداء استثنائي",
+    },
+    subtitle: {
+      en: "Shop high-end products with clean design and trusted quality.",
+      ar: "تسوق منتجات عالية الجودة بتصميم أنيق وموثوق.",
+    },
+  },
+  {
+    id: 3,
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=80",
+    title: {
+      en: "From Trend To Timeless, Built For You",
+      ar: "من الصيحات إلى الكلاسيكيات، كل ما يلائمك",
+    },
+    subtitle: {
+      en: "Discover statement products crafted for confidence and comfort.",
+      ar: "اكتشف منتجات مميزة تجمع بين الثقة والراحة.",
+    },
+  },
+];
+
 function HomePage() {
   const { language } = useContext(LanguagesContext)
+  const [activeSlide, setActiveSlide] = useState(0)
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % heroSlides.length)
+    }, 5000)
+
+    return () => clearInterval(intervalId)
+  }, [])
 
   return (
     <div className="min-h-screen bg-linear-to-b from-slate-50 via-white to-indigo-50 px-6 py-10 sm:px-10">
       <div className="mx-auto max-w-7xl">
-        <section className="grid gap-8 rounded-3xl border border-white/70 bg-white/60 p-8 shadow-[0_25px_60px_rgba(15,23,42,0.1)] backdrop-blur-xl md:grid-cols-2 md:p-12">
+        <section className="relative h-[68vh] min-h-[420px] overflow-hidden rounded-3xl border border-slate-200 shadow-[0_30px_70px_rgba(15,23,42,0.2)]">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={heroSlides[activeSlide].id}
+              src={heroSlides[activeSlide].image}
+              alt="Hero banner"
+              className="absolute inset-0 h-full w-full object-cover"
+              initial={{ scale: 1.08, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 1.03, opacity: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            />
+          </AnimatePresence>
+
+          <div className="absolute inset-0 bg-linear-to-r from-slate-950/75 via-slate-900/45 to-indigo-900/30" />
+
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            key={`text-${heroSlides[activeSlide].id}`}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10 flex h-full max-w-3xl flex-col justify-center px-8 text-white sm:px-14"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-indigo-600">
-              {language === "ar" ? "تجربة تسوق فاخرة" : "Luxury Shopping Experience"}
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-indigo-200">
+              {language === "ar" ? "وجهة التسوق الفاخر" : "Premium Shopping Destination"}
             </p>
-            <h1 className="mt-4 text-4xl font-extrabold leading-tight text-slate-900 sm:text-5xl">
-              {language === "ar" ? "اختيارات مميزة بتصميم عصري يواكب ذوقك" : "Premium picks crafted for modern lifestyle"}
+            <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
+              {heroSlides[activeSlide].title[language]}
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-7 text-slate-600">
-              {language === "ar"
-                ? "اكتشف منتجات مختارة بعناية مع تجربة تصفح سلسة، بحث ذكي، وواجهة أنيقة."
-                : "Discover hand-picked products with elegant visuals, smooth browsing, and a polished premium interface."}
+            <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-slate-100 sm:text-lg">
+              {heroSlides[activeSlide].subtitle[language]}
             </p>
             <motion.div whileHover={{ y: -2 }} className="mt-8">
               <Link
                 to="/products"
-                className="inline-flex items-center rounded-xl bg-indigo-600 px-7 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-indigo-700"
+                className="inline-flex items-center rounded-xl bg-indigo-600 px-8 py-3.5 text-sm font-semibold text-white shadow-xl transition hover:bg-indigo-700"
               >
                 {language === "ar" ? "تسوق الآن" : "Shop Now"}
               </Link>
             </motion.div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: "easeOut", delay: 0.08 }}
-            className="relative overflow-hidden rounded-3xl border border-white/70 bg-linear-to-br from-indigo-500 via-indigo-400 to-slate-700 p-8 text-white"
-          >
-            <motion.div
-              animate={{ y: [0, -14, 0], x: [0, 8, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-10 -inset-e-10 h-40 w-40 rounded-full bg-white/25 blur-2xl"
-            />
-            <motion.div
-              animate={{ y: [0, 12, 0], x: [0, -10, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-12 -inset-s-6 h-44 w-44 rounded-full bg-indigo-200/35 blur-2xl"
-            />
-            <div className="relative z-10">
-              <p className="text-sm font-medium text-indigo-100">
-                {language === "ar" ? "منطقة صورة/أنيميشن" : "Image / Motion Placeholder"}
-              </p>
-              <h2 className="mt-3 text-2xl font-bold">
-                {language === "ar" ? "مستوى جديد من واجهات التجارة الإلكترونية" : "A cinematic hero space for your brand"}
-              </h2>
-              <p className="mt-4 text-sm leading-6 text-indigo-100/95">
-                {language === "ar"
-                  ? "يمكن استبدال هذه المنطقة بصورة عالية الجودة أو أنيميشن مخصص باستخدام Framer Motion."
-                  : "Replace this area with a high-quality campaign image or a custom Framer Motion abstract animation."}
-              </p>
-            </div>
-          </motion.div>
+          <div className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+            {heroSlides.map((slide, index) => (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={() => setActiveSlide(index)}
+                className={`h-2.5 rounded-full transition ${activeSlide === index ? "w-8 bg-white" : "w-2.5 bg-white/60"}`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </section>
 
         <FeaturedSlider />
