@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import HeaderContainer from "./components/header/HeaderContainer";
 import HomePage from "./pages/home-page/HomePage";
@@ -11,14 +11,21 @@ import RegisterPage from "./pages/login-page/RegisterPage";
 import CartPage from "./pages/cart-page/CartPage";
 import ContactPage from "./pages/contact-page/ContactPage";
 import Footer from "./components/footer/Footer";
+import { useSelector } from "react-redux";
 
 function App() {
   const { language } = useContext(LanguagesContext);
+  const themeMode = useSelector((state) => state.theme.mode);
+  const isDarkMode = themeMode === "dark";
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDarkMode);
+  }, [isDarkMode]);
 
   return (
     <div
       dir={language === "ar" ? "rtl" : "ltr"}
-      className="font-sans min-h-screen bg-black text-[#f6e7bf]"
+      className={`font-sans min-h-screen transition-colors ${isDarkMode ? "bg-black text-[#f6e7bf]" : "bg-white text-[#374151]"}`}
     >
       <HeaderContainer />
 
