@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import RegisterPage from "./pages/login-page/RegisterPage";
 import CartPage from "./pages/cart-page/CartPage";
 import ContactPage from "./pages/contact-page/ContactPage";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const { language } = useContext(LanguagesContext);
@@ -17,7 +18,7 @@ function App() {
   return (
     <div
       dir={language === "ar" ? "rtl" : "ltr"}
-      className="font-sans min-h-screen bg-gray-50 text-gray-800"
+      className="font-sans min-h-screen bg-slate-50 text-slate-800"
     >
       <HeaderContainer />
 
@@ -37,6 +38,7 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

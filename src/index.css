@@ -1,4 +1,27 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --bg-soft: #f8fafc;
+  --slate-700: #334155;
+  --slate-900: #0f172a;
+  --indigo-500: #6366f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: var(--bg-soft);
+  color: var(--slate-900);
+}
+
+#root {
+  min-height: 100vh;
+}
 
 /* .active {
     color: crimson;
