@@ -52,14 +52,13 @@ function ProductsPage() {
   }, [page, searchTerm])
 
   return (
-    <div className="min-h-screen px-6 py-8 sm:px-10" style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}>
+    <div className="min-h-screen px-6 py-8 sm:px-10 bg-white dark:bg-[#000000]">
       <div className="mx-auto max-w-7xl">
         <motion.h1
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          style={{ color: "var(--text-color)" }}
-          className="mb-2 text-center text-4xl font-extrabold tracking-tight"
+          className="mb-2 text-center text-4xl font-extrabold tracking-tight text-slate-900 dark:text-[#f6e7bf]"
         >
           {language === "ar" ? "قائمة المنتجات" : "Products"}
         </motion.h1>
@@ -67,8 +66,7 @@ function ProductsPage() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.08 }}
-          style={{ color: "var(--text-secondary)" }}
-          className="mb-10 text-center text-sm"
+          className="mb-10 text-center text-sm text-slate-600 dark:text-[#d6c59b]"
         >
           {searchTerm
             ? (language === "ar" ? `نتائج البحث عن: ${searchTerm}` : `Search results for: ${searchTerm}`)
@@ -78,11 +76,7 @@ function ProductsPage() {
         {isLoading ? (
           <div className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {Array.from({ length: SKELETON_COUNT }).map((_, index) => (
-              <div
-                key={`skeleton-${index}`}
-                className="rounded-2xl border p-5 animate-pulse"
-                style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)", boxShadow: "0 18px 45px var(--card-shadow)" }}
-              >
+          <div className="mb-10 rounded-2xl border border-slate-200 dark:border-[#D4AF37]/20 p-5 animate-pulse bg-white dark:bg-[#0a0a0a] shadow-[0_18px_45px_rgba(15,23,42,0.08)] dark:shadow-[0_18px_45px_rgba(0,0,0,0.55)]">
                 <div className="mb-4 h-48 w-full rounded-xl bg-slate-200 dark:bg-[#1a1a1a]" />
                 <div className="mb-3 h-5 rounded bg-slate-200 dark:bg-[#1a1a1a]" />
                 <div className="mb-4 h-4 w-1/2 rounded bg-slate-200 dark:bg-[#1a1a1a]" />
@@ -93,11 +87,11 @@ function ProductsPage() {
             ))}
           </div>
         ) : productList.length === 0 ? (
-          <div className="mb-10 rounded-2xl border p-10 text-center shadow-sm" style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}>
-            <h2 style={{ color: "var(--text-color)" }} className="text-xl font-semibold">
+          <div className="mb-10 rounded-2xl border border-slate-200 dark:border-[#D4AF37]/20 p-10 text-center shadow-sm bg-white dark:bg-[#0a0a0a]">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-[#f6e7bf]">
               {language === "ar" ? "لا توجد منتجات" : "No products found"}
             </h2>
-            <p style={{ color: "var(--text-secondary)" }} className="mt-2">
+            <p className="mt-2 text-slate-600 dark:text-[#d6c59b]">
               {language === "ar"
                 ? "جرّب البحث بكلمات مختلفة أو حاول لاحقًا."
                 : "Try a different keyword or check back in a moment."}
@@ -111,22 +105,21 @@ function ProductsPage() {
                 onClick={() => navigate(`/products/${item.id}`)}
                 variants={cardVariants}
                 whileHover={{ scale: 1.025, y: -4 }}
-                className="group cursor-pointer rounded-2xl border p-5 shadow-[0_18px_45px_rgba(15,23,42,0.08)] transition"
-                style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)", boxShadow: "0 18px 45px var(--card-shadow)" }}
+                className="group cursor-pointer rounded-2xl border border-slate-200 dark:border-[#D4AF37]/20 p-5 shadow-[0_18px_45px_rgba(15,23,42,0.08)] dark:shadow-[0_18px_45px_rgba(0,0,0,0.55)] transition bg-white dark:bg-[#0a0a0a]"
               >
                 <img
                   src={item.thumbnail}
                   alt={item.title}
                   className="mb-4 h-48 w-full rounded-xl object-cover"
                 />
-                <h2 style={{ color: "var(--text-color)" }} className="mb-1 line-clamp-1 text-lg font-semibold">{item.title}</h2>
+                <h2 className="mb-1 line-clamp-1 text-lg font-semibold text-slate-900 dark:text-[#f6e7bf]">{item.title}</h2>
                 <p className="mb-3 text-base font-bold text-[#6b0b0b] dark:text-[#D4AF37]">${item.price}</p>
 
-                <p style={{ color: "var(--text-secondary)" }} className="text-sm">
-                  {language === "ar" ? "الماركة" : "Brand"}: <span style={{ color: "var(--text-color)" }} className="font-medium">{item.brand}</span>
+                <p className="text-sm text-slate-600 dark:text-[#d6c59b]">
+                  {language === "ar" ? "الماركة" : "Brand"}: <span className="font-medium text-slate-900 dark:text-[#f6e7bf]">{item.brand}</span>
                 </p>
-                <p style={{ color: "var(--text-secondary)" }} className="text-sm">
-                  {language === "ar" ? "الفئة" : "Category"}: <span style={{ color: "var(--text-color)" }} className="font-medium">{item.category}</span>
+                <p className="text-sm text-slate-600 dark:text-[#d6c59b]">
+                  {language === "ar" ? "الفئة" : "Category"}: <span className="font-medium text-slate-900 dark:text-[#f6e7bf]">{item.category}</span>
                 </p>
                 <p className={`mt-1 text-sm font-semibold ${item.stock > 0 ? "text-emerald-700 dark:text-[#D4AF37]" : "text-rose-600"}`}>
                   {item.stock > 0

@@ -54,7 +54,7 @@ function FeaturedSlider() {
       {isLoading ? (
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {Array.from({ length: 4 }).map((_, index) => (
-            <div key={`featured-skeleton-${index}`} className="rounded-2xl border border-slate-200 bg-slate-50 p-5 animate-pulse dark:border-[#D4AF37]/20 dark:bg-[#0a0a0a]">
+            <div key={`featured-skeleton-${index}`} className="rounded-2xl border border-slate-200 bg-white p-5 animate-pulse dark:border-[#D4AF37]/20 dark:bg-[#0a0a0a]">
               <div className="h-44 rounded-xl bg-slate-200 dark:bg-[#1a1a1a]" />
               <div className="mt-4 h-4 w-2/5 rounded bg-slate-200 dark:bg-[#1a1a1a]" />
               <div className="mt-3 h-5 rounded bg-slate-200 dark:bg-[#1a1a1a]" />
@@ -73,7 +73,7 @@ function FeaturedSlider() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.07 }}
                 whileHover={{ y: -6 }}
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.08)] dark:border-[#D4AF37]/20 dark:bg-[#0a0a0a] dark:shadow-[0_18px_40px_rgba(0,0,0,0.55)]"
+                className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_18px_40px_rgba(15,23,42,0.08)] dark:border-[#D4AF37]/20 dark:bg-[#0a0a0a] dark:shadow-[0_18px_40px_rgba(0,0,0,0.55)]"
               >
                 <img
                   src={item.thumbnail}

@@ -71,9 +71,9 @@ function HomePage() {
   }, [])
 
   return (
-    <div className="min-h-screen px-6 py-10 sm:px-10" style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}>
+    <div className="min-h-screen px-6 py-10 sm:px-10 bg-white dark:bg-[#000000]">
       <div className="mx-auto max-w-7xl">
-        <section className="relative h-[70vh] min-h-[440px] overflow-hidden rounded-3xl border shadow-[0_24px_80px_rgba(15,23,42,0.2)]" style={{ borderColor: "var(--card-border)", boxShadow: "0 24px 80px var(--card-shadow)" }}>
+        <section className="relative h-[70vh] min-h-[440px] overflow-hidden rounded-3xl border border-slate-200 dark:border-[#D4AF37]/20 shadow-[0_24px_80px_rgba(15,23,42,0.2)] dark:shadow-[0_24px_80px_rgba(0,0,0,0.6)]">
           <AnimatePresence mode="wait">
             <motion.img
               key={heroSlides[activeSlide].id}

@@ -29,7 +29,7 @@ function ProductDetails() {
 
   return (
     <div className="min-h-screen bg-white px-6 py-10 text-slate-900 dark:bg-black dark:text-[#f6e7bf] sm:px-10">
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-[0_30px_80px_rgba(15,23,42,0.15)] backdrop-blur-xl dark:border-[#D4AF37]/20 dark:bg-[#0a0a0a] dark:shadow-[0_30px_80px_rgba(0,0,0,0.8)] md:flex-row md:p-10">
+      <div className="mx-auto flex max-w-7xl flex-col gap-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_30px_80px_rgba(15,23,42,0.15)] backdrop-blur-xl dark:border-[#D4AF37]/20 dark:bg-[#0a0a0a] dark:shadow-[0_30px_80px_rgba(0,0,0,0.8)] md:flex-row md:p-10">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}

@@ -128,14 +128,14 @@ function HeaderContainer() {
               )}
             </div>
 
-            <button
+            {/* <button
               type="button"
               onClick={() => dispatch(toggleTheme())}
               className={`inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-semibold transition ${isDarkMode ? "border border-[#D4AF37]/35 bg-black/60 text-[#f6e7bf] hover:bg-[#1a0808]" : "border border-[#4a0404]/20 bg-white text-[#4a0404] hover:bg-[#f9f4f4]"}`}
             >
               {isDarkMode ? <Sun size={15} className="text-[#D4AF37]" /> : <Moon size={15} className="text-[#4a0404]" />}
               {isDarkMode ? (language === "ar" ? "الوضع الفاتح" : "Light") : (language === "ar" ? "الوضع الداكن" : "Dark")}
-            </button>
+            </button> */}
 
             <div className="flex items-center gap-2">
               <Globe size={16} className={isDarkMode ? "text-[#d7b252]" : "text-[#4a0404]"} />

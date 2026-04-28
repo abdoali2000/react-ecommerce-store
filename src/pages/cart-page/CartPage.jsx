@@ -19,13 +19,12 @@ function CartPage() {
   };
 
   return (
-    <div className="min-h-screen p-6 sm:p-10" style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}>
+    <div className="min-h-screen p-6 sm:p-10 bg-white dark:bg-[#000000]">
       <motion.h1
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        style={{ color: "var(--text-color)" }}
-        className="mb-10 flex items-center justify-center gap-3 text-center text-4xl font-extrabold"
+        className="mb-10 flex items-center justify-center gap-3 text-center text-4xl font-extrabold text-slate-900 dark:text-[#f6e7bf]"
       >
         <ShoppingBag className="text-[#6b0b0b] dark:text-[#D4AF37]" />
         Shopping Cart
@@ -35,46 +34,38 @@ function CartPage() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, delay: 0.08 }}
-        className="rounded-2xl border p-6 shadow-2xl"
-        style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
+        className="rounded-2xl border border-slate-200 dark:border-[#D4AF37]/20 p-6 shadow-2xl bg-white dark:bg-[#0a0a0a]"
       >
         {items.length === 0 ? (
-          <p style={{ color: "var(--text-secondary)" }} className="text-center text-lg">Your cart is empty</p>
+          <p className="text-center text-lg text-slate-600 dark:text-[#d6c59b]">Your cart is empty</p>
         ) : (
           <motion.div variants={listVariants} initial="hidden" animate="visible">
             {items.map(item => (
               <motion.div
                 variants={itemVariants}
                 key={item.id}
-                className="flex flex-col gap-5 border-b py-6 last:border-b-0 md:flex-row md:items-center"
-                style={{ borderColor: "var(--card-border)" }}
+                className="flex flex-col gap-5 border-b border-slate-200 dark:border-[#D4AF37]/20 py-6 last:border-b-0 md:flex-row md:items-center"
               >
                 <img
                   src={item.thumbnail}
                   alt={item.title}
-                  className="h-24 w-24 rounded-xl border object-cover shadow-md"
-                  style={{ borderColor: "var(--card-border)" }}
+                  className="h-24 w-24 rounded-xl border border-slate-200 dark:border-[#D4AF37]/20 object-cover shadow-md"
                 />
                 <div className="flex-1">
-                  <h2 style={{ color: "var(--text-color)" }} className="text-xl font-semibold">{item.title}</h2>
+                  <h2 className="text-xl font-semibold text-slate-900 dark:text-[#f6e7bf]">{item.title}</h2>
                   <p className="font-medium text-[#6b0b0b] dark:text-[#D4AF37]">${item.price}</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => dispatch(decreaseQuantity(item.id))}
-                    className="rounded-md border bg-white px-3 py-2 transition hover:bg-slate-100 dark:border-[#D4AF37]/20 dark:bg-[#0a0a0a] dark:text-[#f6e7bf] dark:hover:bg-[#1a1a1a]"
-                    style={{ borderColor: "var(--card-border)", backgroundColor: "var(--card-bg)", color: "var(--text-color)" }}
+                    className="rounded-md border border-slate-200 dark:border-[#D4AF37]/20 bg-white dark:bg-[#0a0a0a] px-3 py-2 transition text-slate-900 dark:text-[#f6e7bf] hover:bg-slate-100 dark:hover:bg-[#1a1a1a]"
                   >
-
                     <Minus size={14} />
                   </button>
-                  <span className="rounded-md border px-4 py-1 font-semibold"
-                    style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)", color: "var(--text-color)" }}
-                  >{item.quantity}</span>
+                  <span className="rounded-md border border-slate-200 dark:border-[#D4AF37]/20 bg-white dark:bg-[#0a0a0a] px-4 py-1 font-semibold text-slate-900 dark:text-[#f6e7bf]">{item.quantity}</span>
                   <button
                     onClick={() => dispatch(increaseQuantity(item.id))}
-                    className="rounded-md border px-3 py-2 transition hover:opacity-80"
-                    style={{ borderColor: "var(--card-border)", backgroundColor: "var(--card-bg)", color: "var(--text-color)" }}
+                    className="rounded-md border border-slate-200 dark:border-[#D4AF37]/20 bg-white dark:bg-[#0a0a0a] px-3 py-2 transition text-slate-900 dark:text-[#f6e7bf] hover:opacity-80"
                   >
                     <Plus size={14} />
                   </button>
@@ -97,8 +88,7 @@ function CartPage() {
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.15 }}
-        style={{ color: "var(--text-color)" }}
-        className="mt-10 text-right text-2xl font-bold"
+        className="mt-10 text-right text-2xl font-bold text-slate-900 dark:text-[#f6e7bf]"
       >
         Total: ${total.toFixed(2)}
       </motion.div>

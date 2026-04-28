@@ -39,7 +39,7 @@ function CategoryCards() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: index * 0.08 }}
             whileHover={{ y: -6, scale: 1.01 }}
-            className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#0a0a0a] dark:shadow-[0_18px_40px_rgba(0,0,0,0.55)]"
+            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#0a0a0a] dark:shadow-[0_18px_40px_rgba(0,0,0,0.55)]"
           >
             <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#6b0b0b] dark:text-[#D4AF37]">
               <Sparkles size={12} />

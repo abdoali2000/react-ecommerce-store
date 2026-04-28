@@ -22,11 +22,17 @@ function App() {
     document.documentElement.classList.toggle("dark", isDarkMode);
   }, [isDarkMode]);
 
+  // Apply dark class immediately on component mount if dark mode is enabled
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
   return (
     <div
       dir={language === "ar" ? "rtl" : "ltr"}
-      className="font-sans min-h-screen transition-colors"
-      style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}
+      className="font-sans min-h-screen transition-colors bg-white dark:bg-[#000000] text-slate-900 dark:text-[#f6e7bf]"
     >
       <HeaderContainer />
 

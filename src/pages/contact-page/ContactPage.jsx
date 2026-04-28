@@ -37,7 +37,7 @@ function ContactPage() {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        <Form className="w-full max-w-lg rounded-2xl border border-slate-200 bg-slate-50 p-8 shadow-[0_22px_70px_rgba(15,23,42,0.12)] dark:border-[#D4AF37]/20 dark:bg-[#0a0a0a] dark:shadow-[0_22px_70px_rgba(0,0,0,0.7)]">
+        <Form className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-8 shadow-[0_22px_70px_rgba(15,23,42,0.12)] dark:border-[#D4AF37]/20 dark:bg-[#0a0a0a] dark:shadow-[0_22px_70px_rgba(0,0,0,0.7)]">
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
