@@ -18,7 +18,7 @@ function App() {
   return (
     <div
       dir={language === "ar" ? "rtl" : "ltr"}
-      className="font-sans min-h-screen bg-slate-50 text-slate-800"
+      className="font-sans min-h-screen bg-black text-[#f6e7bf]"
     >
       <HeaderContainer />
 

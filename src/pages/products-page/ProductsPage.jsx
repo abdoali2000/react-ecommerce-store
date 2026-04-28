@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { addToCart } from '../../redux/reducers/cartSlice'
 import { LanguagesContext } from '../../context/languageContext'
 import { motion } from 'framer-motion'
+import { ShoppingBag, Star } from 'lucide-react'
 
 const SKELETON_COUNT = 8;
 
@@ -17,6 +18,15 @@ function ProductsPage() {
   const [page, setPage] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
   const searchTerm = searchParams.get("search")?.trim() || ""
+  const listVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
+  }
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 18 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.35 } },
+  }
 
   useEffect(() => {
     setPage(0)
@@ -42,13 +52,13 @@ function ProductsPage() {
   }, [page, searchTerm])
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-slate-50 via-white to-indigo-50 px-6 py-8 sm:px-10">
+    <div className="min-h-screen bg-black px-6 py-8 sm:px-10">
       <div className="mx-auto max-w-7xl">
         <motion.h1
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="mb-2 text-center text-4xl font-extrabold tracking-tight text-slate-800"
+          className="mb-2 text-center text-4xl font-extrabold tracking-tight text-[#f6e7bf]"
         >
           {language === "ar" ? "قائمة المنتجات" : "Products"}
         </motion.h1>
@@ -56,7 +66,7 @@ function ProductsPage() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.08 }}
-          className="mb-10 text-center text-sm text-slate-500"
+          className="mb-10 text-center text-sm text-[#d6c59b]"
         >
           {searchTerm
             ? (language === "ar" ? `نتائج البحث عن: ${searchTerm}` : `Search results for: ${searchTerm}`)
@@ -68,56 +78,53 @@ function ProductsPage() {
             {Array.from({ length: SKELETON_COUNT }).map((_, index) => (
               <div
                 key={`skeleton-${index}`}
-                className="rounded-2xl border border-white/70 bg-white/70 p-5 animate-pulse shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-md"
+                className="rounded-2xl border border-[#D4AF37]/20 bg-[#120707]/70 p-5 animate-pulse shadow-[0_18px_45px_rgba(0,0,0,0.5)]"
               >
-                <div className="mb-4 h-48 w-full rounded-xl bg-slate-200" />
-                <div className="mb-3 h-5 rounded bg-slate-200" />
-                <div className="mb-4 h-4 w-1/2 rounded bg-slate-200" />
-                <div className="mb-2 h-3 rounded bg-slate-200" />
-                <div className="mb-2 h-3 w-5/6 rounded bg-slate-200" />
-                <div className="h-9 w-full rounded-lg bg-slate-200" />
+                <div className="mb-4 h-48 w-full rounded-xl bg-[#2a1212]" />
+                <div className="mb-3 h-5 rounded bg-[#2a1212]" />
+                <div className="mb-4 h-4 w-1/2 rounded bg-[#2a1212]" />
+                <div className="mb-2 h-3 rounded bg-[#2a1212]" />
+                <div className="mb-2 h-3 w-5/6 rounded bg-[#2a1212]" />
+                <div className="h-9 w-full rounded-lg bg-[#2a1212]" />
               </div>
             ))}
           </div>
         ) : productList.length === 0 ? (
-          <div className="mb-10 rounded-2xl border border-slate-200 bg-white/80 p-10 text-center shadow-sm backdrop-blur-sm">
-            <h2 className="text-xl font-semibold text-slate-800">
+          <div className="mb-10 rounded-2xl border border-[#D4AF37]/25 bg-[#120707]/70 p-10 text-center shadow-sm">
+            <h2 className="text-xl font-semibold text-[#f6e7bf]">
               {language === "ar" ? "لا توجد منتجات" : "No products found"}
             </h2>
-            <p className="mt-2 text-slate-500">
+            <p className="mt-2 text-[#d6c59b]">
               {language === "ar"
                 ? "جرّب البحث بكلمات مختلفة أو حاول لاحقًا."
                 : "Try a different keyword or check back in a moment."}
             </p>
           </div>
         ) : (
-          <div className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <motion.div variants={listVariants} initial="hidden" animate="visible" className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {productList.map((item) => (
               <motion.div
                 key={item.id}
                 onClick={() => navigate(`/products/${item.id}`)}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35 }}
+                variants={cardVariants}
                 whileHover={{ scale: 1.025, y: -4 }}
-                className="group cursor-pointer rounded-2xl border border-white/70 bg-white/70 p-5 shadow-[0_18px_45px_rgba(15,23,42,0.09)] backdrop-blur-md transition"
+                className="group cursor-pointer rounded-2xl border border-[#D4AF37]/25 bg-[#120707]/70 p-5 shadow-[0_18px_45px_rgba(0,0,0,0.5)] transition"
               >
                 <img
                   src={item.thumbnail}
                   alt={item.title}
                   className="mb-4 h-48 w-full rounded-xl object-cover"
                 />
-                <h2 className="mb-1 line-clamp-1 text-lg font-semibold text-slate-800">{item.title}</h2>
-                <p className="mb-3 text-base font-bold text-indigo-700">${item.price}</p>
+                <h2 className="mb-1 line-clamp-1 text-lg font-semibold text-[#f6e7bf]">{item.title}</h2>
+                <p className="mb-3 text-base font-bold text-[#D4AF37]">${item.price}</p>
 
-                <p className="text-sm text-slate-500">
-                  {language === "ar" ? "الماركة" : "Brand"}: <span className="font-medium text-slate-700">{item.brand}</span>
+                <p className="text-sm text-[#d6c59b]">
+                  {language === "ar" ? "الماركة" : "Brand"}: <span className="font-medium text-[#f1ddb1]">{item.brand}</span>
                 </p>
-                <p className="text-sm text-slate-500">
-                  {language === "ar" ? "الفئة" : "Category"}: <span className="font-medium text-slate-700">{item.category}</span>
+                <p className="text-sm text-[#d6c59b]">
+                  {language === "ar" ? "الفئة" : "Category"}: <span className="font-medium text-[#f1ddb1]">{item.category}</span>
                 </p>
-                <p className={`mt-1 text-sm font-semibold ${item.stock > 0 ? "text-emerald-600" : "text-rose-600"}`}>
+                <p className={`mt-1 text-sm font-semibold ${item.stock > 0 ? "text-[#D4AF37]" : "text-[#f37f7f]"}`}>
                   {item.stock > 0
                     ? (language === "ar" ? `متوفر: ${item.stock}` : `In Stock: ${item.stock}`)
                     : (language === "ar" ? "غير متوفر" : "Out of Stock")}
@@ -125,14 +132,13 @@ function ProductsPage() {
 
                 <div className="mt-2 flex items-center">
                   {Array.from({ length: 5 }).map((val, i) => (
-                    <span
+                    <Star
                       key={i}
-                      className={i < Math.round(item.rating) ? "text-sm text-amber-400" : "text-sm text-slate-300"}
-                    >
-                      ★
-                    </span>
+                      size={14}
+                      className={i < Math.round(item.rating) ? "fill-[#D4AF37] text-[#D4AF37]" : "text-[#5d4444]"}
+                    />
                   ))}
-                  <span className="ml-2 text-xs text-slate-500">({item.rating})</span>
+                  <span className="ml-2 text-xs text-[#d6c59b]">({item.rating})</span>
                 </div>
 
                 <motion.button
@@ -143,13 +149,14 @@ function ProductsPage() {
                   }}
                   whileHover={{ y: -1 }}
                   whileTap={{ scale: 0.98 }}
-                  className="mt-4 w-full rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
+                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-[#D4AF37]/35 bg-[#4a0404] px-4 py-2 text-sm font-semibold text-[#f6e7bf] transition hover:bg-[#5b0c0c]"
                 >
+                  <ShoppingBag size={15} />
                   {language === "ar" ? "إضافة سريعة للسلة" : "Quick Add to Cart"}
                 </motion.button>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
         <motion.div
@@ -164,18 +171,18 @@ function ProductsPage() {
             onClick={() => setPage(page - 1)}
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.98 }}
-            className="rounded-lg border border-slate-300 bg-white px-5 py-2 font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-lg border border-[#D4AF37]/30 bg-[#120707] px-5 py-2 font-semibold text-[#f6e7bf] transition hover:bg-[#1e0a0a] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {language === "ar" ? "السابق" : "Previous"}
           </motion.button>
-          <span className="rounded-lg border border-slate-200 bg-white px-4 py-2 font-bold text-slate-700">
+          <span className="rounded-lg border border-[#D4AF37]/30 bg-[#120707] px-4 py-2 font-bold text-[#f6e7bf]">
             {language === "ar" ? `صفحة ${page + 1}` : `Page ${page + 1}`}
           </span>
           <motion.button
             onClick={() => setPage(page + 1)}
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.98 }}
-            className="rounded-lg border border-slate-300 bg-white px-5 py-2 font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700"
+            className="rounded-lg border border-[#D4AF37]/30 bg-[#120707] px-5 py-2 font-semibold text-[#f6e7bf] transition hover:bg-[#1e0a0a]"
           >
             {language === "ar" ? "التالي" : "Next"}
           </motion.button>

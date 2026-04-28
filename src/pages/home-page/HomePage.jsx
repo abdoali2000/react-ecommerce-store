@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { LanguagesContext } from '../../context/languageContext'
 import FeaturedSlider from './components/FeaturedSlider'
 import CategoryCards from './components/CategoryCards'
+import { ArrowRight } from 'lucide-react'
 
 const heroSlides = [
   {
@@ -47,6 +48,19 @@ const heroSlides = [
 function HomePage() {
   const { language } = useContext(LanguagesContext)
   const [activeSlide, setActiveSlide] = useState(0)
+  const contentVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, staggerChildren: 0.1 }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.35 } }
+  }
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -57,9 +71,9 @@ function HomePage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-slate-50 via-white to-indigo-50 px-6 py-10 sm:px-10">
+    <div className="min-h-screen bg-black px-6 py-10 sm:px-10">
       <div className="mx-auto max-w-7xl">
-        <section className="relative h-[68vh] min-h-[420px] overflow-hidden rounded-3xl border border-slate-200 shadow-[0_30px_70px_rgba(15,23,42,0.2)]">
+        <section className="relative h-[70vh] min-h-[440px] overflow-hidden rounded-3xl border border-[#D4AF37]/30 shadow-[0_24px_80px_rgba(0,0,0,0.8)]">
           <AnimatePresence mode="wait">
             <motion.img
               key={heroSlides[activeSlide].id}
@@ -73,30 +87,31 @@ function HomePage() {
             />
           </AnimatePresence>
 
-          <div className="absolute inset-0 bg-linear-to-r from-slate-950/75 via-slate-900/45 to-indigo-900/30" />
+          <div className="absolute inset-0 bg-linear-to-r from-black/85 via-[#1a0707]/65 to-[#4a0404]/60" />
 
           <motion.div
+            variants={contentVariants}
+            initial="hidden"
+            animate="visible"
             key={`text-${heroSlides[activeSlide].id}`}
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
             className="relative z-10 flex h-full max-w-3xl flex-col justify-center px-8 text-white sm:px-14"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-indigo-200">
-              {language === "ar" ? "وجهة التسوق الفاخر" : "Premium Shopping Destination"}
-            </p>
-            <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
+            <motion.p variants={itemVariants} className="text-xs font-semibold uppercase tracking-[0.3em] text-[#D4AF37]">
+              {language === "ar" ? "هوية ليلية فاخرة" : "Luxury Noir Identity"}
+            </motion.p>
+            <motion.h1 variants={itemVariants} className="mt-5 text-4xl font-extrabold leading-tight text-[#f7e8c0] sm:text-5xl lg:text-6xl">
               {heroSlides[activeSlide].title[language]}
-            </h1>
-            <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-slate-100 sm:text-lg">
+            </motion.h1>
+            <motion.p variants={itemVariants} className="mt-5 max-w-2xl text-base font-medium leading-7 text-[#e9d6a0] sm:text-lg">
               {heroSlides[activeSlide].subtitle[language]}
-            </p>
-            <motion.div whileHover={{ y: -2 }} className="mt-8">
+            </motion.p>
+            <motion.div variants={itemVariants} whileHover={{ y: -2 }} className="mt-8">
               <Link
                 to="/products"
-                className="inline-flex items-center rounded-xl bg-indigo-600 px-8 py-3.5 text-sm font-semibold text-white shadow-xl transition hover:bg-indigo-700"
+                className="inline-flex items-center gap-2 rounded-xl border border-[#D4AF37]/40 bg-[#4a0404] px-8 py-3.5 text-sm font-semibold text-[#f7e8c0] shadow-xl transition hover:bg-[#5c0909]"
               >
                 {language === "ar" ? "تسوق الآن" : "Shop Now"}
+                <ArrowRight size={16} />
               </Link>
             </motion.div>
           </motion.div>
@@ -107,7 +122,7 @@ function HomePage() {
                 key={slide.id}
                 type="button"
                 onClick={() => setActiveSlide(index)}
-                className={`h-2.5 rounded-full transition ${activeSlide === index ? "w-8 bg-white" : "w-2.5 bg-white/60"}`}
+                className={`h-2.5 rounded-full transition ${activeSlide === index ? "w-8 bg-[#D4AF37]" : "w-2.5 bg-[#f6e7bf]/50"}`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

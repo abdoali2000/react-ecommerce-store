@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { LanguagesContext } from "../../../context/languageContext";
 import axios from "axios";
+import { Gem } from "lucide-react";
 
 const productTag = {
   en: "Featured",
@@ -40,12 +41,12 @@ function FeaturedSlider() {
         className="mb-8 flex items-center justify-between"
       >
         <div>
-          <h2 className="text-3xl font-bold text-slate-800">{language === "ar" ? "منتجات مميزة" : "Featured Products"}</h2>
-          <p className="mt-2 text-slate-500">
+          <h2 className="text-3xl font-bold text-[#f6e7bf]">{language === "ar" ? "منتجات مميزة" : "Featured Products"}</h2>
+          <p className="mt-2 text-[#d6c59b]">
             {language === "ar" ? "اسحب لاكتشاف مختاراتنا المفضلة." : "Drag to explore our hand-picked collection."}
           </p>
         </div>
-        <Link to="/products" className="text-sm font-semibold text-indigo-600 transition hover:text-indigo-700">
+        <Link to="/products" className="text-sm font-semibold text-[#D4AF37] transition hover:text-[#f5d978]">
           {language === "ar" ? "عرض الكل" : "View All"}
         </Link>
       </motion.div>
@@ -53,11 +54,11 @@ function FeaturedSlider() {
       {isLoading ? (
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {Array.from({ length: 4 }).map((_, index) => (
-            <div key={`featured-skeleton-${index}`} className="rounded-2xl border border-slate-300 bg-white p-5 animate-pulse">
-              <div className="h-44 rounded-xl bg-slate-200" />
-              <div className="mt-4 h-4 w-2/5 rounded bg-slate-200" />
-              <div className="mt-3 h-5 rounded bg-slate-200" />
-              <div className="mt-3 h-4 w-1/3 rounded bg-slate-200" />
+            <div key={`featured-skeleton-${index}`} className="rounded-2xl border border-[#D4AF37]/20 bg-[#120707] p-5 animate-pulse">
+              <div className="h-44 rounded-xl bg-[#251010]" />
+              <div className="mt-4 h-4 w-2/5 rounded bg-[#251010]" />
+              <div className="mt-3 h-5 rounded bg-[#251010]" />
+              <div className="mt-3 h-4 w-1/3 rounded bg-[#251010]" />
             </div>
           ))}
         </div>
@@ -72,7 +73,7 @@ function FeaturedSlider() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.07 }}
                 whileHover={{ y: -6 }}
-                className="overflow-hidden rounded-2xl border border-slate-800/70 bg-white p-4 shadow-[0_18px_40px_rgba(15,23,42,0.14)]"
+                className="overflow-hidden rounded-2xl border border-[#D4AF37]/30 bg-[#120707] p-4 shadow-[0_18px_40px_rgba(0,0,0,0.55)]"
               >
                 <img
                   src={item.thumbnail}
@@ -80,12 +81,15 @@ function FeaturedSlider() {
                   loading="eager"
                   className="h-44 w-full rounded-xl object-cover"
                 />
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-indigo-600">{productTag[language]}</p>
-                <h3 className="mt-2 line-clamp-1 text-lg font-bold text-slate-900">{item.title}</h3>
-                <p className="mt-2 text-base font-bold text-slate-700">${item.price}</p>
+                <p className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#D4AF37]">
+                  <Gem size={12} />
+                  {productTag[language]}
+                </p>
+                <h3 className="mt-2 line-clamp-1 text-lg font-bold text-[#f6e7bf]">{item.title}</h3>
+                <p className="mt-2 text-base font-bold text-[#d6c59b]">${item.price}</p>
                 <Link
                   to={`/products/${item.id}`}
-                  className="mt-5 inline-flex rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
+                  className="mt-5 inline-flex rounded-lg border border-[#D4AF37]/35 bg-[#4a0404] px-4 py-2 text-sm font-semibold text-[#f6e7bf] transition hover:bg-[#5b0c0c]"
                 >
                   {language === "ar" ? "عرض المنتج" : "View Product"}
                 </Link>

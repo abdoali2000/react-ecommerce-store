@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { LanguagesContext } from "../../../context/languageContext";
+import { Sparkles } from "lucide-react";
 
 const categories = [
   { key: "beauty", title: { en: "Beauty", ar: "الجمال" }, desc: { en: "Premium care and daily essentials.", ar: "عناية فاخرة واحتياجات يومية." } },
@@ -21,10 +22,10 @@ function CategoryCards() {
         transition={{ duration: 0.5 }}
         className="mb-8"
       >
-        <h2 className="text-3xl font-bold text-slate-800">
+        <h2 className="text-3xl font-bold text-[#f6e7bf]">
           {language === "ar" ? "تسوق حسب الفئة" : "Shop by Category"}
         </h2>
-        <p className="mt-2 text-slate-500">
+        <p className="mt-2 text-[#d6c59b]">
           {language === "ar" ? "تشكيلة منسقة لتجربة تسوق أفضل." : "Curated categories for a premium browsing experience."}
         </p>
       </motion.div>
@@ -38,13 +39,14 @@ function CategoryCards() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: index * 0.08 }}
             whileHover={{ y: -6, scale: 1.01 }}
-            className="rounded-2xl border border-white/70 bg-white/70 p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-md"
+            className="rounded-2xl border border-[#D4AF37]/25 bg-[#120707]/70 p-6 shadow-[0_18px_40px_rgba(0,0,0,0.55)] backdrop-blur-md"
           >
-            <p className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#D4AF37]">
+              <Sparkles size={12} />
               {language === "ar" ? "فئة مميزة" : "Featured Category"}
             </p>
-            <h3 className="mt-3 text-xl font-semibold text-slate-800">{category.title[language]}</h3>
-            <p className="mt-3 text-sm leading-6 text-slate-500">{category.desc[language]}</p>
+            <h3 className="mt-3 text-xl font-semibold text-[#f6e7bf]">{category.title[language]}</h3>
+            <p className="mt-3 text-sm leading-6 text-[#d6c59b]">{category.desc[language]}</p>
           </motion.article>
         ))}
       </div>
