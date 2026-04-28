@@ -41,8 +41,8 @@ function FeaturedSlider() {
         className="mb-8 flex items-center justify-between"
       >
         <div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100">{language === "ar" ? "منتجات مميزة" : "Featured Products"}</h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-300">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-[#f6e7bf]">{language === "ar" ? "منتجات مميزة" : "Featured Products"}</h2>
+          <p className="mt-2 text-slate-600 dark:text-[#d6c59b]">
             {language === "ar" ? "اسحب لاكتشاف مختاراتنا المفضلة." : "Drag to explore our hand-picked collection."}
           </p>
         </div>
@@ -85,11 +85,11 @@ function FeaturedSlider() {
                   <Gem size={12} />
                   {productTag[language]}
                 </p>
-                <h3 className="mt-2 line-clamp-1 text-lg font-bold text-slate-900 dark:text-slate-100">{item.title}</h3>
-                <p className="mt-2 text-base font-bold text-[#6b0b0b] dark:text-slate-300">${item.price}</p>
+                <h3 className="mt-2 line-clamp-1 text-lg font-bold text-slate-900 dark:text-[#f6e7bf]">{item.title}</h3>
+                <p className="mt-2 text-base font-bold text-[#6b0b0b] dark:text-[#D4AF37]">${item.price}</p>
                 <Link
                   to={`/products/${item.id}`}
-                  className="mt-5 inline-flex rounded-lg border border-[#6b0b0b]/30 bg-[#6b0b0b] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#7b1111] dark:border-[#D4AF37]/30 dark:bg-[#4a0404] dark:text-slate-100 dark:hover:bg-[#5b0c0c]"
+                  className="mt-5 inline-flex rounded-lg border border-[#6b0b0b]/30 bg-[#6b0b0b] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#7b1111] dark:border-[#D4AF37]/30 dark:bg-[#4a0404] dark:text-[#f6e7bf] dark:hover:bg-[#5b0c0c]"
                 >
                   {language === "ar" ? "عرض المنتج" : "View Product"}
                 </Link>

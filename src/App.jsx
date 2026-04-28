@@ -25,7 +25,8 @@ function App() {
   return (
     <div
       dir={language === "ar" ? "rtl" : "ltr"}
-      className={`font-sans min-h-screen transition-colors ${isDarkMode ? "bg-black text-[#f6e7bf]" : "bg-white text-[#374151]"}`}
+      className="font-sans min-h-screen transition-colors"
+      style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}
     >
       <HeaderContainer />
 

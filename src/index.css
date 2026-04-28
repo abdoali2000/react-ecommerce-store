@@ -1,11 +1,38 @@
-@import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
 
 :root {
+  /* Legacy luxury colors */
   --lux-black: #000000;
   --lux-burgundy: #4a0404;
   --lux-gold: #d4af37;
   --lux-ivory: #f6e7bf;
+
+  /* Light mode theme variables */
+  --bg-color: #ffffff;
+  --text-color: #0f172a;
+  --card-bg: #f8fafc;
+  --card-border: #e2e8f0;
+  --card-shadow: rgba(15, 23, 42, 0.08);
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --button-hover: #f1f5f9;
+  --accent-light: #6b0b0b;
+  --accent-light-hover: #7b1111;
+}
+
+.dark {
+  /* Dark mode theme variables */
+  --bg-color: #000000;
+  --text-color: #f8fafc;
+  --card-bg: #0a0a0a;
+  --card-border: rgba(212, 175, 55, 0.2);
+  --card-shadow: rgba(0, 0, 0, 0.5);
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --button-hover: #1d0a0a;
+  --accent-light: #d4af37;
+  --accent-light-hover: #e8c547;
 }
 
 * {
@@ -14,9 +41,17 @@
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  background-color: var(--lux-black);
-  color: var(--lux-ivory);
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 #root {

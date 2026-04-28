@@ -71,9 +71,9 @@ function HomePage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white px-6 py-10 text-slate-900 dark:bg-black dark:text-slate-100 sm:px-10">
+    <div className="min-h-screen px-6 py-10 sm:px-10" style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}>
       <div className="mx-auto max-w-7xl">
-        <section className="relative h-[70vh] min-h-[440px] overflow-hidden rounded-3xl border border-slate-200 shadow-[0_24px_80px_rgba(15,23,42,0.2)] dark:border-[#D4AF37]/20 dark:shadow-[0_24px_80px_rgba(0,0,0,0.8)]">
+        <section className="relative h-[70vh] min-h-[440px] overflow-hidden rounded-3xl border shadow-[0_24px_80px_rgba(15,23,42,0.2)]" style={{ borderColor: "var(--card-border)", boxShadow: "0 24px 80px var(--card-shadow)" }}>
           <AnimatePresence mode="wait">
             <motion.img
               key={heroSlides[activeSlide].id}
@@ -106,7 +106,7 @@ function HomePage() {
               {heroSlides[activeSlide].subtitle[language]}
             </motion.p>
             <motion.div variants={itemVariants} whileHover={{ y: -2 }} className="mt-8">
-              <Link to="/products" className="inline-flex items-center gap-2 rounded-xl border border-[#6b0b0b]/30 bg-[#6b0b0b] px-8 py-3.5 text-sm font-semibold text-white shadow-xl transition hover:bg-[#7b1111] dark:border-[#D4AF37]/30 dark:bg-[#4a0404] dark:text-slate-100 dark:hover:bg-[#5c0909]">
+              <Link to="/products" className="inline-flex items-center gap-2 rounded-xl border border-[#6b0b0b]/30 bg-[#6b0b0b] px-8 py-3.5 text-sm font-semibold text-white shadow-xl transition hover:bg-[#7b1111] dark:border-[#D4AF37]/30 dark:bg-[#4a0404] dark:text-[#f6e7bf] dark:hover:bg-[#5c0909]">
                 {language === "ar" ? "تسوق الآن" : "Shop Now"}
                 <ArrowRight size={16} />
               </Link>

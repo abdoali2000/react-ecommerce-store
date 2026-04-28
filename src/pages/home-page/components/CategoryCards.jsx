@@ -22,10 +22,10 @@ function CategoryCards() {
         transition={{ duration: 0.5 }}
         className="mb-8"
       >
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100">
+        <h2 className="text-3xl font-bold text-slate-900 dark:text-[#f6e7bf]">
           {language === "ar" ? "تسوق حسب الفئة" : "Shop by Category"}
         </h2>
-        <p className="mt-2 text-slate-600 dark:text-slate-300">
+        <p className="mt-2 text-slate-600 dark:text-[#d6c59b]">
           {language === "ar" ? "تشكيلة منسقة لتجربة تسوق أفضل." : "Curated categories for a premium browsing experience."}
         </p>
       </motion.div>
@@ -45,8 +45,8 @@ function CategoryCards() {
               <Sparkles size={12} />
               {language === "ar" ? "فئة مميزة" : "Featured Category"}
             </p>
-            <h3 className="mt-3 text-xl font-semibold text-slate-900 dark:text-slate-100">{category.title[language]}</h3>
-            <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{category.desc[language]}</p>
+            <h3 className="mt-3 text-xl font-semibold text-slate-900 dark:text-[#f6e7bf]">{category.title[language]}</h3>
+            <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-[#d6c59b]">{category.desc[language]}</p>
           </motion.article>
         ))}
       </div>
