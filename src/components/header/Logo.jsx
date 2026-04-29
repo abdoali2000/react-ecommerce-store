@@ -5,7 +5,7 @@ import { Crown } from 'lucide-react'
 
 function Logo() {
   return (
-    <Link to="/home" className="inline-flex items-center gap-3">
+    <Link to="/" className="inline-flex items-center gap-3">
       <motion.div
         whileHover={{ scale: 1.04 }}
         transition={{ type: "spring", stiffness: 280, damping: 20 }}

@@ -1,13 +1,18 @@
+import { useContext } from "react"; 
 import { useSelector, useDispatch } from "react-redux";
 import { increaseQuantity, decreaseQuantity, removeFromCart } from "../../redux/reducers/cartSlice";
 import { motion } from "framer-motion";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { LanguagesContext } from "../../context/languageContext"; 
 
 function CartPage() {
   const { items } = useSelector(state => state.cart);
   const dispatch = useDispatch();
+  
+  const { language } = useContext(LanguagesContext);
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
   const listVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
@@ -27,7 +32,7 @@ function CartPage() {
         className="mb-10 flex items-center justify-center gap-3 text-center text-4xl font-extrabold text-slate-900 dark:text-[#f6e7bf]"
       >
         <ShoppingBag className="text-[#6b0b0b] dark:text-[#D4AF37]" />
-        Shopping Cart
+        {language === "ar" ? "سلة التسوق" : "Shopping Cart"}
       </motion.h1>
 
       <motion.div
@@ -37,7 +42,9 @@ function CartPage() {
         className="rounded-2xl border border-slate-200 dark:border-[#D4AF37]/20 p-6 shadow-2xl bg-white dark:bg-[#0a0a0a]"
       >
         {items.length === 0 ? (
-          <p className="text-center text-lg text-slate-600 dark:text-[#d6c59b]">Your cart is empty</p>
+          <p className="text-center text-lg text-slate-600 dark:text-[#d6c59b]">
+            {language === "ar" ? "سلة التسوق فارغة" : "Your cart is empty"}
+          </p>
         ) : (
           <motion.div variants={listVariants} initial="hidden" animate="visible">
             {items.map(item => (
@@ -53,7 +60,9 @@ function CartPage() {
                 />
                 <div className="flex-1">
                   <h2 className="text-xl font-semibold text-slate-900 dark:text-[#f6e7bf]">{item.title}</h2>
-                  <p className="font-medium text-[#6b0b0b] dark:text-[#D4AF37]">${item.price}</p>
+                  <p className="font-medium text-[#6b0b0b] dark:text-[#D4AF37]">
+                    ${item.price}
+                  </p>
                 </div>
                 <div className="flex items-center gap-3">
                   <button
@@ -76,7 +85,7 @@ function CartPage() {
                   style={{ borderColor: "#6b0b0b30", backgroundColor: "#6b0b0b" }}
                 >
                   <Trash2 size={15} />
-                  Remove
+                  {language === "ar" ? "حذف" : "Remove"}
                 </button>
               </motion.div>
             ))}
@@ -88,9 +97,10 @@ function CartPage() {
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.15 }}
-        className="mt-10 text-right text-2xl font-bold text-slate-900 dark:text-[#f6e7bf]"
+        className={`mt-10 text-2xl font-bold text-slate-900 dark:text-[#f6e7bf] ${language === "ar" ? "text-left" : "text-right"}`}
       >
-        Total: ${total.toFixed(2)}
+        {language === "ar" ? "الإجمالي: " : "Total: "}
+        ${total.toFixed(2)}
       </motion.div>
     </div>
   )

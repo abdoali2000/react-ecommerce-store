@@ -6,7 +6,7 @@ import ProductsPage from "./pages/products-page/ProductsPage";
 import ProductsDetails from "./pages/product-details/ProductDetails";
 import NotFound from "./pages/not-found/NotFound";
 import { LanguagesContext } from "./context/languageContext";
-import ProtectedRoute from "./components/ProtectedRoute"
+import ProtectedRoute from "./components/ProtectedRoute";
 import RegisterPage from "./pages/login-page/RegisterPage";
 import CartPage from "./pages/cart-page/CartPage";
 import ContactPage from "./pages/contact-page/ContactPage";
@@ -27,7 +27,7 @@ function App() {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
     }
-  }, []);
+  }, [isDarkMode]);
 
   return (
     <div
@@ -37,21 +37,20 @@ function App() {
       <HeaderContainer />
 
       <Routes>
-        <Route path="/" element={<RegisterPage />} />
+        {/* الصفحة الرئيسية هي الآن الواجهة الأساسية للموقع */}
+        <Route path="/" element={<HomePage />} />
 
-        <Route path="/home" element={
-          <ProtectedRoute>
-            <HomePage />
-            </ProtectedRoute>
-          } 
-          />
+        {/* نقل صفحة التسجيل لمسار مستقل */}
+        <Route path="/register" element={<RegisterPage />} />
+
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:product_id" element={<ProductsDetails />} />
-        <Route path="/cart" element={<CartPage/>} />
-        <Route path="/contact" element={<ContactPage/>} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/contact" element={<ContactPage />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      
       <Footer />
     </div>
   );
