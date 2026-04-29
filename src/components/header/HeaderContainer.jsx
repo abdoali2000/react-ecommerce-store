@@ -53,9 +53,10 @@ function HeaderContainer() {
   }, [searchTerm, location.pathname, navigate]);
 
   const navItems = [
-    { label: language === "ar" ? "الرئيسية" : "Home", to: "/home" },
+    { label: language === "ar" ? "الرئيسية" : "Home", to: "/" },
     { label: language === "ar" ? "المنتجات" : "Products", to: "/products" },
     { label: language === "ar" ? "تواصل معنا" : "Contact", to: "/contact" },
+    { label: language === "ar" ? "تسجيل" : "Register", to: "/register" },
   ];
 
   const containerVariants = {
